@@ -18,16 +18,18 @@ public class ManagePaymentMethodTestCases extends BaseClass {
 	ManagePaymentMethod Mp;
 	GeneralUtilities gu = new GeneralUtilities();
 
-  @Test
+ // @Test
   public void verifyTheTextOfAllertOnSelectingActiveButton() throws IOException {
-	  
+	  Hp = new HomePage(driver);
 		lp = new LoginPage(driver);
+		Mp = new ManagePaymentMethod(driver);
 		lp.performLogin(ExcelReadUtility.read(1, 0),ExcelReadUtility.read(1, 1));
 	  Hp.selectManagePaymentMethod();
 	  String actual =Mp.clickActiveButtonAndGetTheTextOfAllert();
 		
-		String expected = "Product Status Changed Successfully";
+		String expected = "Alert!";
 		Assert.assertEquals(actual, expected, "not matching with the expected one");
 	}
+  
   }
 

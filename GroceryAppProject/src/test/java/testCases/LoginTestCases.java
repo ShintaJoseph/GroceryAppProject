@@ -13,18 +13,18 @@ public class LoginTestCases extends BaseClass {
 
 	LoginPage lp;
 
-	// @Test
+	// @Test(retryAnalyzer=RetryAnalyser.class)
 
 	public void verifyLoginButtonText() {
 		lp = new LoginPage(driver);
-		String expected = "Sign In";
+		String expected = "Sign Inn";//string changed to Inn to try retryanalyzer
 		String actual = lp.signInText();
 		// assertion
 		Assert.assertEquals(actual, expected, Constants.errormessage);
 
 	}
 
-	 @Test
+	//@Test
 
 	public void verifyLoginBackgroundColor() {
 		lp = new LoginPage(driver);
@@ -33,7 +33,7 @@ public class LoginTestCases extends BaseClass {
 		Assert.assertEquals(actualResult, expectedResult, "not expected output");
 	}
 
-	// @Test
+	 @Test
 
 	public void verifyLoginBorderColor() {
 		lp = new LoginPage(driver);
@@ -93,6 +93,13 @@ public class LoginTestCases extends BaseClass {
 		lp = new LoginPage(driver);
 		lp.performLogin("admin", "admin");
 		lp.signIn();
+
+	}
+	//@Test(dataProvider = "loginSuccess",dataProviderClass=DataProviderTestCase.class)
+
+	public void verifySignIn(String name, String password) {
+		lp = new LoginPage(driver);
+		lp.performLogin(name, password);
 
 	}
 

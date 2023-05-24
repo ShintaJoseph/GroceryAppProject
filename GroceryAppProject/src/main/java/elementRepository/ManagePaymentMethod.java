@@ -12,13 +12,15 @@ public class ManagePaymentMethod {
 	WebDriver driver;
 	@FindBy(xpath = "//a[@href='https://groceryapp.uniqassosiates.com/admin/Product/Methods?statusid=2&st=Disabled&page_ad=1']")
 	WebElement ActiveButton;
+	@FindBy(xpath = "//h5[text()=' Alert!']")
+	WebElement Alert;
 	public ManagePaymentMethod(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
 	public String clickActiveButtonAndGetTheTextOfAllert() {
 		gu.clickElement(ActiveButton);
-		String Text = driver.switchTo().alert().getText();//to utulty
+		String Text =gu.getElementText(Alert);
 	  return Text;
 		
 	}

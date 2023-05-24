@@ -12,7 +12,7 @@ public class LoginPage {
 	GeneralUtilities gu = new GeneralUtilities();
 
 	WebDriver driver;
-	String userNameEnter,userPassword;
+	
 	public LoginPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this); // page factory
@@ -33,6 +33,11 @@ public class LoginPage {
 	WebElement allert;
 	@FindBy(xpath = "//label[@for='remember']")
 	WebElement rememberMe;
+	@FindBy(xpath = "//span[text()='7rmart supermarket']")
+	WebElement findTextAfterLogin;
+
+	@FindBy(xpath = "//h5[text()=' Alert!']")
+	WebElement unSuccessFullLogin;
 	public String signInText() {
 		return gu.getElementText(signInClick);
 	}
@@ -46,13 +51,10 @@ public class LoginPage {
 	}
 
 	public void enterUserName(String userNameEnter) {
-		this.userNameEnter=userNameEnter;
-
 		userName.sendKeys(userNameEnter);
 	}
 
 	public void enterPassword(String userPassword) {
-		this.userPassword=userPassword;
 		password.sendKeys(userPassword);
 		
 	}
@@ -82,10 +84,15 @@ public class LoginPage {
 	}
 	public void performLogin(String userNameEnter,String userPassword) {
 		
-		this.userPassword=userPassword;
-		this.userPassword=userPassword;
-		enterUserName( "admin");
-		enterPassword( "admin");
+		enterUserName( userNameEnter);
+		enterPassword( userPassword);
 		signIn();
 	}
-}
+
+	public String text() {
+		return gu.getElementText(findTextAfterLogin);
+		}
+
+		public String loginInvalid() {
+		return gu.getElementText(unSuccessFullLogin);
+		}}

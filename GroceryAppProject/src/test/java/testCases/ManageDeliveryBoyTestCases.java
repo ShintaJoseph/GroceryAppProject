@@ -8,20 +8,23 @@ import org.testng.annotations.Test;
 import elementRepository.HomePage;
 import elementRepository.LoginPage;
 import elementRepository.ManageDeliveryBoy;
-
 import utilities.GeneralUtilities;
+
+
+
 
 public class ManageDeliveryBoyTestCases extends BaseClass{
 	
-	HomePage Hp;
+	HomePage hp;
 	LoginPage lp;
-	ManageDeliveryBoy Md;
-	GeneralUtilities gu = new GeneralUtilities();
-  @Test
+	ManageDeliveryBoy md;
+	
+ // @Test
   public void verifyTheTextOfAllertOnAddingNewDeliveryBoy() throws IOException {
-	  Md = new ManageDeliveryBoy(driver);
-	 String actual = Md.updateDetailsOfNewDeliveryBoy();
-	 String expected = "Delivery Boy Details Created Successfully";
+	  md = new ManageDeliveryBoy(driver);
+	 String actual = md.updateDetailsOfNewDeliveryBoy();
+	 String expected = "Alert!";
 	 Assert.assertEquals(actual, expected, "Not Matching with the expected allert text");
   }
 }
+

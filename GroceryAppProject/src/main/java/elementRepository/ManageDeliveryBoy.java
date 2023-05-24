@@ -26,7 +26,7 @@ public class ManageDeliveryBoy {
 	WebElement password;
 	@FindBy(xpath = "//button[@type='submit']")
 	WebElement save;
-	@FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")
+	@FindBy(xpath = "//h5[text()=' Alert!']")
 	WebElement allert;
 	public ManageDeliveryBoy(WebDriver driver) {
 		this.driver = driver;

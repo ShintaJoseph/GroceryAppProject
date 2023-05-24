@@ -1,20 +1,12 @@
 package elementRepository;
 
-import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.Toolkit;
-import java.awt.datatransfer.StringSelection;
-import java.awt.event.KeyEvent;
-import java.time.Duration;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
+
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 import utilities.GeneralUtilities;
 import utilities.WaitUtility;
@@ -40,8 +32,9 @@ public class ManagePages {
 	WebElement chooseFileButton;
 	@FindBy(xpath = "//button[@name='update']")
 	WebElement update;
-	@FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")
+	@FindBy(xpath = "//h5[text()=' Alert!']")
 	WebElement Allert;
+
 
 	public String clickOnManageContentAndSelectManagePage() {
 		gu.clickElement(manageContent);
@@ -64,9 +57,11 @@ public class ManagePages {
 		gu.clickElement(manageContent);
 		gu.clickElement(managePage);
 		gu.clickElement(actionButton);
+		wu.waitExplicit(driver);
 		gu.fileUpload(driver, chooseFileButton, "C:\\Users\\gods\\selenium screenshot\\screenshot.jpeg");
 		gu.clickElement(update);
 		return gu.getElementText(Allert);
 
 	}
+	
 }

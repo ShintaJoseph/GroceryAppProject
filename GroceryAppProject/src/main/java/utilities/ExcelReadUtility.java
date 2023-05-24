@@ -15,7 +15,7 @@ public class ExcelReadUtility {
 
 	public static String read(int i, int j) throws IOException {
 		fis = new FileInputStream(
-				System.getProperty("user.dir") + "\\src\\main\\resources\\ExcelFiles\\logindetails.xlsx");
+				System.getProperty("user.dir") + "\\src\\main\\resources\\ExcelFiles\\datainput.xlsx");
 		wb = new XSSFWorkbook(fis);
 		ws = wb.getSheet("Sheet1");
 		Row r = ws.getRow(i);

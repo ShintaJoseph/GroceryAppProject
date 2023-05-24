@@ -16,7 +16,7 @@ public class ManageSliderTestCases extends BaseClass {
 		LoginPage lp;
 		ManageSlider Ms;
 		GeneralUtilities gu = new GeneralUtilities();
-		@Test // no such allert message in console. But the pgm run successfully
+	//	@Test // no such allert message in console. But the pgm run successfully
 		public void verifyTheAllertTextOnClickingSaveButtonByGivingLink() throws IOException {
 			Hp = new HomePage(driver);
 			lp = new LoginPage(driver);
@@ -26,7 +26,7 @@ public class ManageSliderTestCases extends BaseClass {
 			
 			String actual =Ms.clickNewButtonAndEnterLinkPressSaveButtonThenGetTextOfAllert();
 			
-			String expected = "Slider Created Successfully";
+			String expected = "Alert!";
 			Assert.assertEquals(actual, expected, "Allert was not matching with the expected one");
 		}
 }

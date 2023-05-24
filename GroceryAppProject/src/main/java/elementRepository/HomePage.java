@@ -43,6 +43,12 @@ public class HomePage {
 	WebElement managePaymentMethod;
 	@FindBy(xpath = "//a[@class='active nav-link']")
 	WebElement manageDeliveryBoy;
+	@FindBy(xpath = "//i[@class='nav-icon fas fa-edit']")
+	WebElement manageContent;
+	@FindBy(xpath = "//a[@href='https://groceryapp.uniqassosiates.com/admin/list-page']")
+	WebElement managePage;
+	@FindBy(xpath = "//i[@class='nav-icon sidebar-item-icon fa fa-cog']")
+	WebElement settingsTab;
 
 	public String selectManageExpenseDropdown() {
 		return gu.dropdownSelection(manageExpenseDropdown, "Create Merchant");
@@ -80,5 +86,14 @@ public class HomePage {
 
 	public void selectManageDeliveryBoy() {
 		gu.clickElement(manageDeliveryBoy);
+	}
+	public void selectManagePages() {
+		gu.clickElement(managePage);
+	}
+	public void selectmanageContent() {
+		gu.clickElement(manageContent);
+	}
+	public void selectSettingsTab() {
+		gu.clickElement(settingsTab);
 	}
 }

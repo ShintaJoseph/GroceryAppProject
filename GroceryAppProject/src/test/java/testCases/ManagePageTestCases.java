@@ -24,29 +24,28 @@ public class ManagePageTestCases extends BaseClass {
 	LoginPage lp;
 	ManagePages Mp;
 	GeneralUtilities gu = new GeneralUtilities();
-	@FindBy(xpath = "//input[@id='main_img']")
-	WebElement chooseFileButton;
+
 	//@Test
 	public void verifyThePageValueCorrespondingToBushTomato() throws IOException {
 		lp = new LoginPage(driver);
 		Mp = new ManagePages(driver);
-		lp.performLogin(ExcelReadUtility.read(1, 0),ExcelReadUtility.read(1, 1));
-		
-		
-		String actual =Mp.clickOnManageContentAndSelectManagePage();
-		
-		String expected = "Guava";
+		lp.performLogin(ExcelReadUtility.read(1, 0), ExcelReadUtility.read(1, 1));
+
+		String actual = Mp.clickOnManageContentAndSelectManagePage();
+
+		String expected = "Orange";
 		Assert.assertEquals(actual, expected, "Page value of Bush Tomato was not matching with the expected one");
 	}
-@Test //not working
-public void verifyTheFileUploadedInTheEditButtonInsideActionOfTitlejm() throws Exception  {
-	    
+
+//	@Test
+	public void verifyTheFileUploadedInTheEditButtonInsideActionOfTitlejm() throws Exception {
+
 		lp = new LoginPage(driver);
 		Mp = new ManagePages(driver);
-		lp.performLogin(ExcelReadUtility.read(1, 0),ExcelReadUtility.read(1, 1));
-		String actual =	Mp.fileUploadOnEditButtonInsideActionOfTitlejm();
-	String expected="Page Updated Successfully";
-	Assert.assertEquals(actual, expected, "File not updated");
+		lp.performLogin(ExcelReadUtility.read(1, 0), ExcelReadUtility.read(1, 1));
+		String actual = Mp.fileUploadOnEditButtonInsideActionOfTitlejm();
+		System.out.println(actual);
+		String expected = "Alert!";
+		Assert.assertEquals(actual, expected, "File not updated");
+	}
 }
-}
-

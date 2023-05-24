@@ -49,7 +49,6 @@ public class GeneralUtilities {
 		String tooltipMessage = element.getAttribute("title");
 		return tooltipMessage;
 	}
-	
 
 	public int clickDynamicTable(WebDriver driver, String columnValue, String compareName) {
 		List<WebElement> firstColumnElement = driver.findElements(By.xpath(columnValue));
@@ -63,34 +62,55 @@ public class GeneralUtilities {
 
 		return value;
 	}
-public void toScrollDownThePage(WebDriver driver,int valuehorizontal, int scrollValueVertical) {
-		
-		JavascriptExecutor js = (JavascriptExecutor) driver;//interface to trigger javascript
-		js.executeScript("window.scrollBy("+valuehorizontal+","+scrollValueVertical+")", "");// for scrolling page
-		WebElement dummy=driver.findElement(By.id("aaa"));
-		js.executeScript("arguments[0].click();",dummy);
+
+	public void toScrollDownThePage(WebDriver driver, int valuehorizontal, int scrollValueVertical) {
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;// interface to trigger javascript
+		js.executeScript("window.scrollBy(" + valuehorizontal + "," + scrollValueVertical + ")", "");// for scrolling
+																										// page
+		WebElement dummy = driver.findElement(By.id("aaa"));
+		js.executeScript("arguments[0].click();", dummy);
 	}
 
-public void fileUpload(WebDriver driver, WebElement value, String type ) throws AWTException {
-	Robot robot = new Robot();
-	Actions action = new Actions(driver);// for mouse hovering 
-	action.moveToElement(value).click().perform();
-	
-	StringSelection ss = new StringSelection(type);
-	Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
-	robot.delay(250);
-	robot.keyPress(KeyEvent.VK_CONTROL);
-	robot.keyPress(KeyEvent.VK_V);
-	robot.delay(250);
-	robot.keyRelease(KeyEvent.VK_CONTROL);
-	robot.keyRelease(KeyEvent.VK_V);
-	robot.delay(250);
-	robot.keyPress(KeyEvent.VK_ENTER);
-	robot.keyRelease(KeyEvent.VK_ENTER);
-	
+	public void fileUpload(WebDriver driver, WebElement value, String type) throws AWTException {
+		Robot robot = new Robot();
+		Actions action = new Actions(driver);// for mouse hovering
+		action.moveToElement(value).click().perform();
 
-}}
+		StringSelection ss = new StringSelection(type);
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
+		robot.delay(250);
+		robot.keyPress(KeyEvent.VK_CONTROL);
+		robot.keyPress(KeyEvent.VK_V);
+		robot.delay(250);
+		robot.keyRelease(KeyEvent.VK_CONTROL);
+		robot.keyRelease(KeyEvent.VK_V);
+		robot.delay(250);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
 
+	}
 
-	
-	
+	public void clickElementAndGiveInput(WebElement element, String text) {
+		element.click();
+		element.sendKeys(text);
+
+	}
+	public void uploadFile(WebDriver driver, WebElement string, String location) throws AWTException {
+		Robot robot = new Robot();
+		Actions action = new Actions(driver);
+		action.moveToElement(string).click().perform();
+		// copy path to your system clipboard
+		StringSelection ss = new StringSelection(location);
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
+		robot.delay(250);
+		robot.keyPress(KeyEvent.VK_CONTROL);
+		robot.keyPress(KeyEvent.VK_V);
+		robot.delay(250);
+		robot.keyRelease(KeyEvent.VK_CONTROL);
+		robot.keyRelease(KeyEvent.VK_V);
+		robot.delay(250);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+	}
+}
