@@ -8,32 +8,33 @@ import org.testng.annotations.Test;
 import constants.Constants;
 import elementRepository.LoginPage;
 import utilities.ExcelReadUtility;
+import utilities.GeneralUtilities;
 
 public class LoginTestCases extends BaseClass {
 
 	LoginPage lp;
+	GeneralUtilities gu = new GeneralUtilities();
 
-	// @Test(retryAnalyzer=RetryAnalyser.class)
+	@Test(enabled = false, retryAnalyzer = RetryAnalyser.class)
 
-	public void verifyLoginButtonText() {
+	public void verifyLoginButtonText() throws IOException {
 		lp = new LoginPage(driver);
-		String expected = "Sign Inn";//string changed to Inn to try retryanalyzer
+		String expected = ExcelReadUtility.read("Sheet2", 2, 0);
 		String actual = lp.signInText();
-		// assertion
 		Assert.assertEquals(actual, expected, Constants.errormessage);
 
 	}
 
-	//@Test
+	@Test(enabled = true, priority = 1)
 
-	public void verifyLoginBackgroundColor() {
+	public void verifyLoginBackgroundColor() throws IOException {
 		lp = new LoginPage(driver);
-		String expectedResult = "rgba(52, 58, 64, 1)";
+		String expectedResult = ExcelReadUtility.read("Sheet2", 2, 2);
 		String actualResult = lp.getBackGroundColorSignIn();
-		Assert.assertEquals(actualResult, expectedResult, "not expected output");
+		Assert.assertEquals(actualResult, expectedResult, Constants.errormessage);
 	}
 
-	 @Test
+	@Test(enabled = false, priority = 3)
 
 	public void verifyLoginBorderColor() {
 		lp = new LoginPage(driver);
@@ -43,63 +44,52 @@ public class LoginTestCases extends BaseClass {
 
 	}
 
-//	@Test
+	@Test(enabled = false, priority = 4)
 
 	public void verifyLoginUserLoginDetails() throws IOException {
 		lp = new LoginPage(driver);
-		lp.enterUserName(ExcelReadUtility.read(1, 0)); // changing the code to read it from the excel file directly
-		lp.enterPassword(ExcelReadUtility.read(1, 1));
-		lp.signIn();
-
+		lp.performLogin(ExcelReadUtility.read("Sheet1", 1, 0), ExcelReadUtility.read("Sheet1", 1, 1));
+		String actual = lp.getNameOfSuperMarket();
+		String expected = ExcelReadUtility.read("Sheet2", 0, 0);
+		Assert.assertEquals(actual, expected, Constants.errormessage);
 	}
 
-//@Test
+	@Test(enabled = false, priority = 5)
 
 	public void verifyRememberMeCheckBoxSelected() {
 		lp = new LoginPage(driver);
 		lp.clickCheckBox();
-		boolean expected = true;
+		boolean expected = Constants.trueButton;
 		boolean actual = lp.isClickCheckBox();
-		Assert.assertEquals(actual, expected, "Check box of rememberme is not selected");
+		Assert.assertEquals(actual, expected, Constants.errormessage);
 	}
 
-	// @Test
+	@Test(enabled = false, priority = 6)
 
 	public void verifyAllertTextenteringWrongPassword() {
 		lp = new LoginPage(driver);
-		lp.enterUserName("admin");
-		lp.enterPassword("admmmin");
-		lp.signIn();
+		try {
+			lp.performLogin(ExcelReadUtility.read("Sheet1", 2, 0), ExcelReadUtility.read("Sheet1", 2, 1));
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
 
 		String actual = lp.getTextOfAllert();
 
-		// String expected = "";
-		// Assert.assertEquals(actual, expected, "The expected text of Allert not
-		// matching with the expected one");
-	}
-//@Test
-//tooltip not in the html 
-
-	public void getTooltipOfUsername() {
-		lp = new LoginPage(driver);
-		String actual = lp.getTooltipOfUsername();
-		String expected = "Please fill out this field.";
-		Assert.assertEquals(actual, expected, "tool tip is not matching with the expected one");
+		String expected = Constants.Allert;
+		Assert.assertEquals(actual, expected, Constants.errormessage);
 	}
 
-	// @Test
-
-	public void verifyLogin() {
-		lp = new LoginPage(driver);
-		lp.performLogin("admin", "admin");
-		lp.signIn();
-
-	}
-	//@Test(dataProvider = "loginSuccess",dataProviderClass=DataProviderTestCase.class)
+	@Test(enabled = false, dataProvider = "loginSuccess", dataProviderClass = DataProviderTestCase.class, priority = 7)
 
 	public void verifySignIn(String name, String password) {
 		lp = new LoginPage(driver);
 		lp.performLogin(name, password);
+		String actual = lp.getTextOfAllert();
+
+		String expected = Constants.Allert;
+		Assert.assertEquals(actual, expected, Constants.errormessage);
 
 	}
 

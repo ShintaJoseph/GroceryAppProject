@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import constants.Constants;
 import elementRepository.HomePage;
 import elementRepository.LoginPage;
 import elementRepository.ManagePages;
@@ -25,27 +26,27 @@ public class ManagePageTestCases extends BaseClass {
 	ManagePages Mp;
 	GeneralUtilities gu = new GeneralUtilities();
 
-	//@Test
-	public void verifyThePageValueCorrespondingToBushTomato() throws IOException {
+	@Test(enabled = true)
+	public void verifyThePageValueCorrespondingToMango() throws IOException {
 		lp = new LoginPage(driver);
 		Mp = new ManagePages(driver);
-		lp.performLogin(ExcelReadUtility.read(1, 0), ExcelReadUtility.read(1, 1));
+		lp.performLogin(ExcelReadUtility.read("Sheet1",1, 0), ExcelReadUtility.read("Sheet1",1, 1));
 
 		String actual = Mp.clickOnManageContentAndSelectManagePage();
 
-		String expected = "Orange";
-		Assert.assertEquals(actual, expected, "Page value of Bush Tomato was not matching with the expected one");
+		String expected = ExcelReadUtility.read("Sheet2",1, 0);
+		Assert.assertEquals(actual, expected, Constants.errormessage);
 	}
 
-//	@Test
+	@Test(enabled = false)
 	public void verifyTheFileUploadedInTheEditButtonInsideActionOfTitlejm() throws Exception {
 
 		lp = new LoginPage(driver);
 		Mp = new ManagePages(driver);
-		lp.performLogin(ExcelReadUtility.read(1, 0), ExcelReadUtility.read(1, 1));
+		lp.performLogin(ExcelReadUtility.read("Sheet1",1, 0), ExcelReadUtility.read("Sheet1",1, 1));
 		String actual = Mp.fileUploadOnEditButtonInsideActionOfTitlejm();
 		System.out.println(actual);
-		String expected = "Alert!";
-		Assert.assertEquals(actual, expected, "File not updated");
+		String expected = Constants.Allert;
+		Assert.assertEquals(actual, expected, Constants.errormessage);
 	}
 }

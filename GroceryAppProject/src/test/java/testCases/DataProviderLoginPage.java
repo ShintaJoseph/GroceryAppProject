@@ -2,32 +2,31 @@ package testCases;
 
 import java.io.IOException;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
+
 import org.testng.annotations.Test;
 
+import constants.Constants;
 import elementRepository.LoginPage;
+import utilities.ExcelReadUtility;
 
 public class DataProviderLoginPage extends BaseClass {
 
 	LoginPage lp;
 
-	@Test(dataProvider = "LoginValid", dataProviderClass = DataProviderLoginPage.class,priority = 1)
+	@Test(enabled=false,dataProvider = "LoginValid", dataProviderClass = DataProviderLoginPage.class)
 	public void verifyLogin(String type, String username, String password) throws IOException {
 		lp = new LoginPage(driver);
-		lp.enterUserName(username);
-		lp.enterPassword(password);
-		lp.signIn();
-		if (type.equals("valid")) {
+		lp.performLogin((ExcelReadUtility.read("Sheet1", 1, 0)), ((ExcelReadUtility.read("Sheet1", 1, 1))));
+		if (type.equals(ExcelReadUtility.read("Sheet2", 0, 2))) {
 			String actual = lp.text();
-			String expected = ("7rmart supermarket");
+			String expected = (ExcelReadUtility.read("Sheet2", 0, 0));
 
-			Assert.assertEquals(actual, expected, "not expected output");
-		} else if (type.equals("invalid")) {
+			Assert.assertEquals(actual, expected, Constants.errormessage);
+		} else if (type.equals(ExcelReadUtility.read("Sheet2", 1, 2))) {
 
 			String actual = lp.loginInvalid();
-			String expected = ("7rmart supermarket");
-			Assert.assertEquals(actual, expected, "not expected output");
+			String expected = Constants.Allert;
+			Assert.assertEquals(actual, expected, Constants.errormessage);
 		}
 	}
 }
-

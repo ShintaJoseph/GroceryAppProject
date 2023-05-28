@@ -15,10 +15,11 @@ public class LoginPage {
 	
 	public LoginPage(WebDriver driver) {
 		this.driver = driver;
-		PageFactory.initElements(driver, this); // page factory
+		PageFactory.initElements(driver, this); 
 	}
 
-
+	@FindBy(xpath = "//span[@class='brand-text font-weight-light']")
+	WebElement superMarketName;
 
 	@FindBy(xpath = "//input[@name='username']")
 	WebElement userName;
@@ -29,7 +30,7 @@ public class LoginPage {
 	WebElement signInClick;
 	@FindBy(xpath = "//input[@id='remember']")
 	WebElement checkBox;
-	@FindBy(xpath = "//i[@class='icon fas fa-ban']")
+	@FindBy(xpath = "//h5[text()=' Alert!']")
 	WebElement allert;
 	@FindBy(xpath = "//label[@for='remember']")
 	WebElement rememberMe;
@@ -92,7 +93,12 @@ public class LoginPage {
 	public String text() {
 		return gu.getElementText(findTextAfterLogin);
 		}
+	public String getNameOfSuperMarket() {
+		return gu.getElementText(superMarketName);
+		}
 
 		public String loginInvalid() {
 		return gu.getElementText(unSuccessFullLogin);
-		}}
+		}
+		
+}

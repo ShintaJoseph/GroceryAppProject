@@ -113,4 +113,12 @@ public class GeneralUtilities {
 		robot.keyPress(KeyEvent.VK_ENTER);
 		robot.keyRelease(KeyEvent.VK_ENTER);
 	}
+	public void threadSleep() {
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			
+			e.printStackTrace();
+		}
+	}
 }

@@ -8,15 +8,19 @@ import org.openqa.selenium.WebDriver;
 
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import com.beust.jcommander.Parameters;
+
 import utilities.ScreenshotUtilities;
 
 public class BaseClass {
 	WebDriver driver;
+
 	ScreenshotUtilities sc;
 
 	public static Properties prop;
@@ -32,7 +36,6 @@ public class BaseClass {
 
 	public void beforeMethod() throws IOException {
 		testBasic();
-		// System.setProperty("webdriver.chrome.driver","C:\\Users\\gods\\Downloads\\chromedriver_win32\\chromedriver.exe");
 		System.setProperty("webdriver.chrome.driver", "G:\\ChromeDriver\\chromedriver.exe");
 
 		ChromeOptions ops = new ChromeOptions();
@@ -55,4 +58,28 @@ public class BaseClass {
 		// Here ITestResult Listener used to find
 
 	}
+//	@BeforeMethod(alwaysRun = true)
+//	@Parameters("browser")
+//	public void beforeMethod(String browser) throws IOException {
+//
+//		if (browser.equals("chrome")) {
+//			testBasic();
+//			// driver = new ChromeDriver();
+//
+//			System.setProperty("webdriver.chrome.driver",
+//					"G:\\ChromeDriver\\chromedriver.exe");
+//			ChromeOptions co = new ChromeOptions();
+//			co.addArguments("--remote-allow-origins=*");
+//			driver = new ChromeDriver(co);
+//		} else if (browser.equals("edge")) {
+//			System.setProperty("webdriver.edge.driver",
+//					"G:\\edgedriver_win64\\msedgedriver.exe");
+//			driver = new EdgeDriver();
+//		}
+//		driver.get(prop.getProperty("BaseURL"));// --> login page
+//
+//		driver.manage().window().maximize();
+//		driver.manage().timeouts().implicitlyWait(Duration.ofMillis(5000));
+//
+//	}
 }

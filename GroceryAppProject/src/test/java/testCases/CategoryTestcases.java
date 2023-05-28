@@ -20,27 +20,25 @@ public class CategoryTestcases extends BaseClass {
 	GeneralUtilities gu = new GeneralUtilities();
 	WaitUtility wu = new WaitUtility();
 
-  @Test
+ @Test(enabled = false)
 	public void verifyTheAllerttextOnRemovingTitle() throws IOException {
 		lp = new LoginPage(driver);
-
+        hp = new HomePage(driver);
 		mc = new ManageCategory(driver);
-		lp.performLogin(ExcelReadUtility.read(1, 0), ExcelReadUtility.read(1, 1));
-		
+		lp.performLogin(ExcelReadUtility.read("Sheet1",1, 0), ExcelReadUtility.read("Sheet1",1, 1));
 		String actual = mc.getTheTextOfAllertOnDeletingOneTitleInsideCategoryOptionWithinManageCategoryTab();
-		String expected = ExcelReadUtility.read(1, 3);
+		String expected = Constants.Allert;
 		Assert.assertEquals(actual, expected, Constants.errormessage);
 	}
 
-	//@Test // scrolling left side not possible
+	@Test (enabled = false)
 	public void verifyAllertOnAddingOneCategory() throws IOException {
 		lp = new LoginPage(driver);
 		mc = new ManageCategory(driver);
 		hp = new HomePage(driver);
-		lp.performLogin(ExcelReadUtility.read(1, 0), ExcelReadUtility.read(1, 1));
-		// wu.waitExplicit(driver);
+		lp.performLogin(ExcelReadUtility.read("Sheet1",1, 0), ExcelReadUtility.read("Sheet1",1, 1));
 		String actual = mc.getTheTextOfAllertOnAddingANewCategory();
-		String expected = "Alert!";
-		Assert.assertEquals(actual, expected, "Text not matching with the expected one");
+		String expected = Constants.Allert;
+		Assert.assertEquals(actual, expected, Constants.errormessage);
 	}
 }

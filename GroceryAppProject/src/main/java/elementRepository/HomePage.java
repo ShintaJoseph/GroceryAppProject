@@ -33,10 +33,10 @@ public class HomePage {
 	WebElement sendButon;
 	@FindBy(xpath = "//i[@class='icon fas fa-check']")
 	WebElement Allert;
-	@FindBy(xpath = "//li[@class='nav-item has-treeview menu-open']")
+	@FindBy(linkText = "//i[@class='nav-icon fas fa-list-alt']")
 	WebElement manageCategory;
-	@FindBy(xpath = "//p[text()='Category']")
-	WebElement Category;
+	@FindBy(xpath = "(//a[@href='https://groceryapp.uniqassosiates.com/admin/list-category'])[1]")
+	WebElement category;
 	@FindBy(xpath = "//i[@class='nav-icon fas fa-window-restore']")
 	WebElement manageSlider;
 	@FindBy(xpath = "//i[@class='nav-icon fas fa-credit-card']")
@@ -56,7 +56,7 @@ public class HomePage {
 
 	public void selectCategoryWithinManagecategory() {
 		gu.clickElement(manageCategory);
-		gu.clickElement(Category);
+		gu.clickElement(category);
 	}
 
 	public void clickpushNotifications() {

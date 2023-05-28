@@ -42,7 +42,7 @@ public class ManagePages {
 		wu.waitExplicit(driver);
 
 	int rowvalue = gu.clickDynamicTable(driver,
-				"//table[@class='table table-bordered table-hover table-sm']//tbody//tr//td[1]", "Bush Tomato") + 1;
+				"//table[@class='table table-bordered table-hover table-sm']//tbody//tr//td[1]", "Mango") + 1;
 
 		String locator = "//table[@class='table table-bordered table-hover table-sm']//tbody//tr[" + rowvalue
 				+ "]//td[4]";
@@ -58,7 +58,7 @@ public class ManagePages {
 		gu.clickElement(managePage);
 		gu.clickElement(actionButton);
 		wu.waitExplicit(driver);
-		gu.fileUpload(driver, chooseFileButton, "C:\\Users\\gods\\selenium screenshot\\screenshot.jpeg");
+		gu.uploadFile(driver, chooseFileButton, "C:\\Users\\gods\\selenium screenshot\\screenshot.jpeg");
 		gu.clickElement(update);
 		return gu.getElementText(Allert);
 

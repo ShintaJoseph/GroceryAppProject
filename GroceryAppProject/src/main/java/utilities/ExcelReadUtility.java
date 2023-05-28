@@ -13,11 +13,11 @@ public class ExcelReadUtility {
 	public static XSSFWorkbook wb;
 	public static XSSFSheet ws;
 
-	public static String read(int i, int j) throws IOException {
+	public static String read(String sheetname,int i, int j) throws IOException {
 		fis = new FileInputStream(
-				System.getProperty("user.dir") + "\\src\\main\\resources\\ExcelFiles\\datainput.xlsx");
+				System.getProperty("user.dir") + "\\src\\main\\resources\\ExcelFiles\\LoginDetails.xlsx");
 		wb = new XSSFWorkbook(fis);
-		ws = wb.getSheet("Sheet1");
+		ws = wb.getSheet(sheetname);
 		Row r = ws.getRow(i);
 		Cell c = r.getCell(j);
 		return c.getStringCellValue();

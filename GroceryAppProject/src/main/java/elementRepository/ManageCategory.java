@@ -12,7 +12,7 @@ import utilities.GeneralUtilities;
 public class ManageCategory {
 	WebDriver driver;
 	GeneralUtilities gu = new GeneralUtilities();
-	HomePage Hp;
+	HomePage hp;
 	LoginPage lp;
 	public ManageCategory(WebDriver driver) {
 		this.driver = driver;
@@ -25,7 +25,7 @@ public class ManageCategory {
 	WebElement newButton;
 	@FindBy(xpath = "//input[@id='category']")
 	WebElement categoryInput;
-	@FindBy(xpath = "//li[@id='134-selectable']")// change xpath
+	@FindBy(xpath = "//span[text()='Category']")
 	WebElement selectGroups;
 	@FindBy(xpath = "//button[@type='submit']")
 	WebElement saveButton;
@@ -35,14 +35,15 @@ public class ManageCategory {
 	public String getTheTextOfAllertOnDeletingOneTitleInsideCategoryOptionWithinManageCategoryTab() throws IOException {
 		
 		
-		Hp.selectCategoryWithinManagecategory();
+		hp.selectCategoryWithinManagecategory();
 		gu.clickElement(delete);
-		driver.switchTo().alert().accept();//to click ok button in the alert
-		String Text = driver.switchTo().alert().getText();//to utility
+		driver.switchTo().alert().accept();
+		String Text = driver.switchTo().alert().getText();
 		return Text;}
 	
 	public String getTheTextOfAllertOnAddingANewCategory() {
-		Hp.selectCategoryWithinManagecategory();
+		hp = new HomePage(driver);
+		hp.selectCategoryWithinManagecategory();
 		gu.clickElement(newButton);
 		gu.clickElementAndGiveInput(categoryInput,"Fruits");
 		gu.clickElement(selectGroups);
